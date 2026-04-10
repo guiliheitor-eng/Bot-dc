@@ -1,4 +1,6 @@
 import discord
+import os, random
+import requests
 from discord.ext import commands
 
 intents = discord.Intents.default()
@@ -18,25 +20,6 @@ async def hello(ctx):
 async def heh(ctx, count_heh = 5):
     await ctx.send("he" * count_heh)
 
-@bot.event
-async def on_ready():
-    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
-    print('------')
-
-@bot.command(description='For when you wanna settle the score some other way')
-async def choose(ctx, *choices: str):
-    """Chooses between multiple choices."""
-    await ctx.send(random.choice(choices))
-
-@bot.group()
-async def cool(ctx):
-    """Says if a user is cool.
-
-    In reality this just checks if a subcommand is being invoked.
-    """
-    if ctx.invoked_subcommand is None:
-        await ctx.send(f'No, {ctx.subcommand_passed} is not cool')
-
 
 @bot.command()
 async def add(ctx, left: int, right: int):
@@ -48,4 +31,40 @@ async def joined(ctx, member: discord.Member):
     """Says when a member joined."""
     await ctx.send(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
 
+@bot.command()
+async def meme(ctx):
+    lista = os.listdir('images')
+
+    imagem = random.choice(lista)
+
+
+    with open(f'images/{imagem}', 'rb') as f:
+        #Vamos armazenar o arquivo convertido da biblioteca do Discord nesta variável!
+        picture = discord.File(f)
+    # Podemos então enviar esse arquivo como um parâmetro
+    await ctx.send(file=picture)
+
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+
+def get_duck_image_url():    
+    url = 'https://pokeapi.co'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+
+@bot.command('duck')
+async def duck(ctx):
+    '''Uma vez que chamamos o comando duck, o programa chama a função get_duck_image_url '''
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
 bot.run("TOKEN")
+
+    
+
