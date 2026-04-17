@@ -44,15 +44,9 @@ async def meme(ctx):
     # Podemos então enviar esse arquivo como um parâmetro
     await ctx.send(file=picture)
 
+
 def get_duck_image_url():    
     url = 'https://random-d.uk/api/random'
-    res = requests.get(url)
-    data = res.json()
-    return data['url']
-
-
-def get_duck_image_url():    
-    url = 'https://pokeapi.co'
     res = requests.get(url)
     data = res.json()
     return data['url']
@@ -65,6 +59,9 @@ async def duck(ctx):
     await ctx.send(image_url)
 
 bot.run("TOKEN")
+
+    
+
 
     
 
