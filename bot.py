@@ -58,10 +58,22 @@ async def duck(ctx):
     image_url = get_duck_image_url()
     await ctx.send(image_url)
 
-bot.run("TOKEN")
+@bot.command()
+async def reciclar(ctx, material):
+    if material == 'plastico':
 
+        await ctx.send('Adolescentes podem reutilizar garrafas e potes plásticos como organizadores ou vasos. Lave os plásticos antes de descartar e separe para reciclagem. Assim, é possível reduzir o lixo em casa de forma simples.')
     
-
+    elif material == 'metal':
+        await ctx.send('Adolescentes podem reutilizar latas como organizadores ou vasos, evitando jogar fora. Lave os metais antes de descartar e separe para reciclagem corretamente. Pequenas atitudes assim já ajudam a reduzir o lixo em casa.')
+    elif material == 'papel':
+        await ctx.send('Adolescentes podem reutilizar folhas de papel como rascunho ou para anotações. Caixas e embalagens podem virar organizadores ou materiais de estudo. Assim, é possível reduzir o lixo em casa de forma simples.')
+    elif material == 'vidro':
+        await ctx.send('Adolescentes podem reutilizar vidro, como potes e garrafas, para guardar alimentos ou organizar objetos. É importante lavar bem antes de reutilizar ou reciclar. Assim, dá pra reduzir o lixo em casa de forma prática e sustentável.')
+    elif material == 'tecido':
+        await ctx.send('Adolescentes podem reutilizar tecidos, como roupas antigas, para fazer panos de limpeza ou customizar peças. Também dá para transformar em bolsas ou capas de objetos. Assim, reduzem o lixo em casa de forma criativa e sustentável.')
+    
+bot.run("")
 
     
 
